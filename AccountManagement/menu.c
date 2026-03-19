@@ -38,20 +38,20 @@ void add() {		//添加卡功能
 		printf("密码超过规定长度\n");
 		return;
 	}
-	// 检查卡号是否已存在
+	// 检查卡号看用户是否已经存在
 	if (queryCard(aName) != NULL) {
 		printf("卡号已存在，请使用其他卡号。\n");
 		return;
 	}
 	// 检查密码是否已被其他卡使用
-	if (isPwdExist(aPwd) == 1) {
+	if (isPwdExist(aPwd)) {
 		printf("该密码已被其他卡使用，请更换密码。\n");
 		return;
 	}
 					//将按规定输入的正确密码保存到结构体中保存信息
 	copy(aName, card.aName, nNameSize);
 	copy(aPwd, card.aPwd, nPwdSize);
-		printf("请输入开卡金额：");
+		printf("请输入开卡金额(RMB)：");
 		scanf(" %f", &card.fBalance);
 		while (getchar() != '\n');
 		if (card.fBalance < 0) {
@@ -94,22 +94,30 @@ void query() {
 	char aName[18] = {0};
 	char aTime[20] = {0};
 	Card* pCard = NULL;
+	int nIndex = 0;
+	int i = 0;
 	printf("请输入查询的卡号：");
 	scanf("%s", aName);
-	pCard = queryCard(aName);
-	timeToString(pCard->tLast,aTime);
-	if (pCard != NULL) {
-		timeToString(pCard->tLast, aTime);
+	pCard = queryCards(aName, &nIndex);
+	//如果pCard为NULL，表示吗没有该卡的信息
+	if (pCard == NULL || nIndex == 0) {
+		printf("没有该卡的信息！\n");
+	}
+	else {
+		//输出表格的表头
 		printf("----------------------查询到的用户卡信息如下------------------------\n");
 		printf("+----------+------+-------+-----------+----------+--------------------+\n");
 		printf("| %-8s | %-4s | %-5s | %-9s | %-8s | %-18s |\n", "卡号", "状态", "余额",
 			"累计使用", "使用次数", "上次使用时间");
-		printf("+----------+------+-------+-----------+----------+--------------------+\n");
-		printf("| %-8s | %-4d | %-5.1f | %-9.1f | %-8d | %-18s |\n", pCard->aName, pCard->nStatus,
-			pCard->fBalance, pCard->fTotalUse, pCard->nUseCount, aTime);
+		for (i = 0; i < nIndex; i++) {
+				timeToString(pCard[i].tLast, aTime);
+				printf("+----------+------+-------+-----------+----------+--------------------+\n");
+				printf("| %-8s | %-4d | %-5.1f | %-9.1f | %-8d | %-18s |\n", pCard[i].aName, pCard[i].nStatus,
+					pCard[i].fBalance, pCard[i].fTotalUse, pCard[i].nUseCount, aTime);
+		}
 		printf("+----------+------+-------+-----------+----------+--------------------+\n");
 	}
-	else
-		printf("未找到相关用户");
-		printf("未找到相关用户,请重新输入\n");
+}
+void exitApp() {
+	releaseCardList();
 }

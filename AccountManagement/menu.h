@@ -3,4 +3,5 @@
 void outputMenu();
 void add();
 void query();
+void exitApp();
 #endif

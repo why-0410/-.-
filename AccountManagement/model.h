@@ -14,8 +14,15 @@ typedef struct Card {
 	float fBalance;		 /*余额*/
 	int nDel;			 /*删除标识（0未删除，1删除）*/
 }Card;
+
+//用链表实现卡信息结构体的存储
+typedef struct CardNode {
+	Card data;
+	struct CardNode* next;
+}CardNode,*lpCardNode;
+
 //计费信息结构体
-typedef struct Billing {
+typedef struct Billing { 
 	char aCardName[18];//卡号
 	time_t tStart;//上机时间
 	time_t tEnd;//下机时间
@@ -23,12 +30,14 @@ typedef struct Billing {
 	int mStatus;//消费状态(0未结算，1已结算)
 	int nDel;//删除标识（0未删除，1删除）
 }Billing;
+
 //上机信息结构体
 typedef struct LogonInfo {
 	char aCardName[18];//上机卡号
 	time_t tLogon;//上机时间
 	float fBalance;//上机时的卡余额
 }LogonInfo;
+
 //下机信息结构体
 typedef struct SettleInfo {
 	char aCardName[18];//卡号
@@ -37,6 +46,7 @@ typedef struct SettleInfo {
 	float fAmount;//消费金额
 	float fBalance;//余额
 }SettleInfo;
+
 //充值退费交易结构体
 typedef struct Money {
 	char aCardName[18];//卡号
