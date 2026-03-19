@@ -97,6 +97,7 @@ void query() {
 	printf("请输入查询的卡号：");
 	scanf("%s", aName);
 	pCard = queryCard(aName);
+	timeToString(pCard->tLast,aTime);
 	if (pCard != NULL) {
 		timeToString(pCard->tLast, aTime);
 		printf("----------------------查询到的用户卡信息如下------------------------\n");
@@ -109,5 +110,6 @@ void query() {
 		printf("+----------+------+-------+-----------+----------+--------------------+\n");
 	}
 	else
+		printf("未找到相关用户");
 		printf("未找到相关用户,请重新输入\n");
 }

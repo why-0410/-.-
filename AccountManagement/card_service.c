@@ -3,6 +3,7 @@
 #include"global.h"
 Card aCard[50];//卡信息存放数组
 int nCount = 0;//实际卡数目
+<<<<<<< HEAD
 //添加新用户时先检查密码是否已存在
 int isPwdExist(const char* pPwd) {
 	int i;
@@ -36,6 +37,13 @@ int addCard(Card card) {
 		aCard[nCount++] = card;
 		return TURE;
 	}
+=======
+//添加新用户卡号信息
+int addCard(Card card) {
+	aCard[nCount] = card;
+	nCount++;
+	return TURE;
+>>>>>>> a7841c47fd3dad1b77d7797633dd97cb8eeb4b88
 }
 //查找输入的卡用户
 Card* queryCard(const char* pName) {
@@ -45,5 +53,9 @@ Card* queryCard(const char* pName) {
 			return &aCard[i];
 		}
 	}
+<<<<<<< HEAD
 	return NULL;
 }
+=======
+}
+>>>>>>> a7841c47fd3dad1b77d7797633dd97cb8eeb4b88
