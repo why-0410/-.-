@@ -99,7 +99,7 @@ void query() {
 	printf("请输入查询的卡号：");
 	scanf("%s", aName);
 	pCard = queryCards(aName, &nIndex);
-	//如果pCard为NULL，表示吗没有该卡的信息
+	//如果pCard为NULL，表示没有该卡的信息
 	if (pCard == NULL || nIndex == 0) {
 		printf("没有该卡的信息！\n");
 	}
@@ -117,12 +117,7 @@ void query() {
 		}
 		printf("+----------+------+-------+-----------+----------+--------------------+\n");
 	}
-<<<<<<< HEAD
 }
 void exitApp() {
 	releaseCardList();
-=======
-	else
-		printf("未找到相关用户,请重新输入\n");
->>>>>>> e159eb73adcdba8fd0c8ad7f7835ecc5c179bae8
 }
