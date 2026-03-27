@@ -4,6 +4,7 @@
 #include"global.h"
 Card aCard[50];//卡信息存放数组
 int nCount = 0;//实际卡数目
+<<<<<<< HEAD
 lpCardNode cardList = NULL;
 //初始化链表
 int initCardList() {
@@ -17,6 +18,9 @@ int initCardList() {
 	return FALSE;
 }
 //添加新用户时先检查新设置密码是否已存在
+=======
+//添加新用户时先检查密码是否已存在
+>>>>>>> e159eb73adcdba8fd0c8ad7f7835ecc5c179bae8
 int isPwdExist(const char* pPwd) {
 	int i;
 	for (i = 0; i < nCount; i++) {
@@ -46,6 +50,7 @@ int addCard(Card card) {
 		tail->next = cur;
 		return TURE;
 	}
+<<<<<<< HEAD
 	return FALSE;
 }
 //释放内存
@@ -61,6 +66,14 @@ void releaseCardList() {
 		}
 		cardList = NULL;
 	}
+=======
+}
+//添加新用户卡号信息
+int addCard(Card card) {
+	aCard[nCount] = card;
+	nCount++;
+	return TURE;
+>>>>>>> e159eb73adcdba8fd0c8ad7f7835ecc5c179bae8
 }
 //查找输入的卡用户
 Card* queryCard(const char* pName) {
@@ -74,6 +87,7 @@ Card* queryCard(const char* pName) {
 			cur = cur->next;
 		}
 	}
+<<<<<<< HEAD
 	return NULL; 
 }
 //模糊查询
@@ -96,3 +110,7 @@ Card* queryCards(const char* pName, int* pIndex) {
 	}
 	return pCard;
 }
+=======
+	return NULL;
+}
+>>>>>>> e159eb73adcdba8fd0c8ad7f7835ecc5c179bae8
